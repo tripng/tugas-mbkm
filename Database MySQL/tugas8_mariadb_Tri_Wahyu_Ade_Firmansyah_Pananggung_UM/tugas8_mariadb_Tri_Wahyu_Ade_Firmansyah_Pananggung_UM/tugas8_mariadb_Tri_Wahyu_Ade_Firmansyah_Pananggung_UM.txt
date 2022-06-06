@@ -1,0 +1,107 @@
+-- Data Tabel DBPOS
+MariaDB [dbpos]> SELECT * FROM produk;
++----+--------------------+------+------------+----------+------+
+| id | kategori_produk_id | kode | nama       | harga    | stok |
++----+--------------------+------+------------+----------+------+
+|  1 |                  5 |   11 | Kursi      |   200000 |   28 |
+|  2 |                  4 |   22 | Mie        |     5000 |  230 |
+|  3 |                  3 |   33 | Masker     |    20000 |  600 |
+|  4 |                  2 |   44 | Laptop     | 10000000 |   15 |
+|  5 |                  1 |   55 | Jam Tangan |   300000 |    8 |
++----+--------------------+------+------------+----------+------+
+5 rows in set (0.003 sec)
+
+MariaDB [dbpos]> SELECT * FROM kategori_produk; 
++----+--------------------+
+| id | nama               |
++----+--------------------+
+|  1 | Aksesoris          |
+|  2 | Elektronik         |
+|  3 | Kesehatan          |
+|  4 | Makanan & Minuman  |
+|  5 | Perlengkapan Rumah |
++----+--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpos]> SELECT * FROM pelanggan;       
++----+------+--------------+
+| id | nama | no_hp        |
++----+------+--------------+
+|  1 | Aldi | 081234567891 |
+|  2 | Aldo | 081234567892 |
+|  3 | Adi  | 081234567893 |
+|  4 | Amad | 081234567894 |
+|  5 | Adit | 081234567895 |
++----+------+--------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpos]> SELECT * FROM pesanan;    
++----+-----------+--------------+------------+-----+-------------+
+| id | produk_id | pelanggan_id | tanggal    | jml | total_harga |
++----+-----------+--------------+------------+-----+-------------+
+| 1  |         1 |            5 | 0000-00-00 |   2 |      400000 |
+| 2  |         2 |            4 | 2022-01-04 |  20 |      100000 |
+| 3  |         3 |            3 | 2022-05-18 |   2 |       40000 |
+| 4  |         4 |            2 | 2022-05-02 |   1 |    10000000 |
+| 5  |         5 |            1 | 2022-02-02 |   1 |      300000 |
++----+-----------+--------------+------------+-----+-------------+
+5 rows in set (0.001 sec)
+
+-- BUAT PROCEDURE  
+-- inputProduk()
+MariaDB [dbpos]> DELIMITER :v
+MariaDB [dbpos]> CREATE PROCEDURE inputProduk(id int, kpi int, kode int, nama varchar(45), harga int, stok int)
+    -> BEGIN
+    -> INSERT INTO produk(id,kategori_produk_id,kode,nama,harga,stok) VALUES (id,kpi,kode,nama,harga,stok);
+    -> END :v
+Query OK, 0 rows affected (0.028 sec)
+
+-- showAllProduk(),
+MariaDB [dbpos]> DELIMITER :)
+MariaDB [dbpos]> CREATE PROCEDURE showAllProduk()
+    -> BEGIN
+    ->     SELECT * FROM Produk;
+    -> END :)
+Query OK, 0 rows affected (0.009 sec)
+
+-- showProdukElektronik(id)
+MariaDB [dbpos]> DELIMITER :v
+MariaDB [dbpos]> CREATE PROCEDURE showProdukElektronik(id int)
+    -> BEGIN
+    -> SELECT kode,produk.nama,harga,stok FROM produk 
+    -> INNER JOIN kategori_produk kp ON produk.kategori_produk_id = kp.id
+    -> WHERE kp.nama = 'elektronik';
+    -> END :v
+Query OK, 0 rows affected (0.008 sec)
+-- showProdukFurniture(id)
+MariaDB [dbpos]> DELIMITER :(
+MariaDB [dbpos]> CREATE PROCEDURE showProdukFurniture(id int)
+    -> BEGIN
+    -> SELECT kode,produk.nama,harga,stok FROM produk
+    -> INNER JOIN kategori_produk kp ON produk.kategori_produk_id = kp.id
+    -> WHERE kp.nama = 'Perlengkapan Rumah';
+    -> END :(
+Query OK, 0 rows affected (0.007 sec)
+
+-- BUAT TRIGGER
+-- kurangiStok() => saat pelanggan memesan produk
+MariaDB [dbpos]> DELIMITER <3
+MariaDB [dbpos]> CREATE OR REPLACE TRIGGER kurangiStok
+    -> AFTER INSERT ON pesanan
+    -> FOR EACH ROW
+    -> BEGIN
+    -> UPDATE produk
+    -> SET stok = stok - NEW.jml WHERE id = NEW.produk_id;
+    -> END <3
+Query OK, 0 rows affected (0.016 sec)
+
+-- normalisasiStok() => saat pelanggan membatalkan pesanan produk
+MariaDB [dbpos]> DELIMITER ^_^
+MariaDB [dbpos]>  CREATE OR REPLACE TRIGGER normalisasiStok
+    ->  AFTER DELETE ON pesanan
+    ->  FOR EACH ROW
+    ->  BEGIN
+    ->  UPDATE produk
+    ->  SET stok = stok + OLD.jml WHERE id = OLD.produk_id;
+    ->  END ^_^
+Query OK, 0 rows affected (0.025 sec)

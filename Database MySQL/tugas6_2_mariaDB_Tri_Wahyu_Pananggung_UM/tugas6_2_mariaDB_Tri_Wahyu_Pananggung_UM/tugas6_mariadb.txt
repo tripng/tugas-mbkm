@@ -1,0 +1,157 @@
+-- tabel
+MariaDB [dbtraining]> SHOW TABLES;
++----------------------+
+| Tables_in_dbtraining |
++----------------------+
+| kategori_kursus      |
+| kategori_pengajar    |
+| kategori_training    |
+| kursus               |
+| pengajar             |
+| peserta              |
+| training             |
++----------------------+
+7 rows in set (0.001 sec)
+
+-- value tabel
+MariaDB [dbtraining]> SELECT * FROM kategori_kursus;
++----+----------------------+
+| id | nama_kategori_kursus |
++----+----------------------+
+|  1 | Pemrograman          |
+|  2 | Jaringan             |
+|  3 | Office               |
+|  4 | Design Grafis        |
+|  5 | Bahasa               |
++----+----------------------+
+5 rows in set (0.011 sec)
+
+MariaDB [dbtraining]> SELECT *FROM kategori_pengajar;
++----+---------------+
+| id | nama_kategori |
++----+---------------+
+|  1 | Internal      |
+|  2 | External      |
+|  3 | Freelancer    |
++----+---------------+
+3 rows in set (0.000 sec)
+
+ERROR: No query specified
+
+MariaDB [dbtraining]> SELECT * FROM kategori_training;
++----+---------------+
+| id | nama_kategori |
++----+---------------+
+|  1 | Public        |
+|  2 | In House      |
+|  3 | Private       |
++----+---------------+
+3 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> SELECT *FROM kursus;
++----+--------------------+----------------+
+| id | kategori_kursus_id | nama_kursus    |
++----+--------------------+----------------+
+|  1 |                  1 | PHP            |
+|  2 |                  2 | LAN            |
+|  3 |                  3 | Outlook        |
+|  4 |                  4 | Blender 3D     |
+|  5 |                  5 | Bahasa Inggris |
++----+--------------------+----------------+
+5 rows in set (0.000 sec)
+
+MariaDB [dbtraining]> SELECT * FROM pengajar;       
++----+----------------------+---------------+-----------------+--------------+----------+
+| id | kategori_pengajar_id | nama_pengajar | email           | no_hp        | alamat   |
++----+----------------------+---------------+-----------------+--------------+----------+
+|  1 |                    1 | Asep          | asep@gmail.com  | 081234567891 | Malang   |
+|  2 |                    2 | Ucup          | ucup@gmail.com  | 081234567892 | Bogor    |
+|  3 |                    3 | Agus          | agus@gmail.com  | 081234567893 | Jakarta  |
+|  4 |                    4 | Udin          | udin@gmail.com  | 081234567894 | Jakarta  |
+|  5 |                    5 | Indri         | indri@gmail.com | 081234567895 | Makassar |
++----+----------------------+---------------+-----------------+--------------+----------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> SELECT * FROM peserta;        
++----+--------------+--------------+-----------------+----------+
+| id | nama_peserta | no_hp        | email           | alamat   |
++----+--------------+--------------+-----------------+----------+
+|  1 | Ahmad        | 089876543219 | ahmad@gmail.com | Jakarta  |
+|  2 | Yoga         | 089876543218 | yoga@gmail.com  | Palu     |
+|  3 | Ajis         | 089876543217 | ajis@gmail.com  | Makassar |
+|  4 | Rahul        | 089876543216 | rahul@gmail.com | Surabaya |
+|  5 | Eko          | 089876543215 | eko@gmail.com   | Bandung  |
++----+--------------+--------------+-----------------+----------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> SELECT * FROM training;       
++----+------------+-------------+----------------------+------------+------------+-----------------------+------------+
+| id | peserta_id | pengajar_id | kategori_training_id | tgl_mulai  | tgl_akhir  | tempat                | keterangan |
++----+------------+-------------+----------------------+------------+------------+-----------------------+------------+
+| 1  |          1 |           1 |                    3 | 2022-01-01 | 2023-01-01 | PT Nurul Fikri        | Berjalan   |
+| 2  |          2 |           2 |                    1 | 2020-01-01 | 2021-01-01 | Universitas Indonesia | Berakhir   |
+| 3  |          3 |           3 |                    2 | 2021-01-01 | 2023-01-01 | PT Nurul Fikri        | Berjalan   |
+| 4  |          4 |           4 |                    3 | 2022-04-01 | 2023-01-01 | PT Nurul Fikri        | Berjalan   |
+| 5  |          5 |           5 |                    1 | 2022-02-01 | 2022-09-01 | Universitas Indonesia | Berjalan   |
++----+------------+-------------+----------------------+------------+------------+-----------------------+------------+
+5 rows in set (0.002 sec)
+
+
+-- Query 2 Inner Join Table
+MariaDB [dbtraining]> SELECT nama_kursus, kk.nama_kategori_kursus "Kategori Kursus"
+    -> FROM kursus k INNER JOIN kategori_kursus kk
+    -> ON k.kategori_kursus_id = kk.id;
++----------------+-----------------+
+| nama_kursus    | Kategori Kursus |
++----------------+-----------------+
+| PHP            | Pemrograman     |
+| LAN            | Jaringan        |
+| Outlook        | Office          |
+| Blender 3D     | Design Grafis   |
+| Bahasa Inggris | Bahasa          |
++----------------+-----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> SELECT nama_pengajar,email,no_hp,alamat,nama_kategori
+    -> FROM pengajar p INNER JOIN kategori_pengajar kp
+    -> ON p.kategori_pengajar_id = kp.id;
++---------------+-----------------+--------------+----------+---------------+
+| nama_pengajar | email           | no_hp        | alamat   | nama_kategori |
++---------------+-----------------+--------------+----------+---------------+
+| Asep          | asep@gmail.com  | 081234567891 | Malang   | External      |
+| Ucup          | ucup@gmail.com  | 081234567892 | Bogor    | Internal      |
+| Agus          | agus@gmail.com  | 081234567893 | Jakarta  | Freelancer    |
+| Udin          | udin@gmail.com  | 081234567894 | Jakarta  | Internal      |
+| Indri         | indri@gmail.com | 081234567895 | Makassar | Freelancer    |
++---------------+-----------------+--------------+----------+---------------+
+5 rows in set (0.001 sec)
+
+-- Join 7 table
+MariaDB [dbtraining]> SELECT nama_peserta,kt.nama_kategori "kategori training",tgl_mulai,tgl_akhir,tempat,keterangan,nama_kursus,nama_kategori_kursus,nama_pengajar,kp.nama_kategori "kategori pengajar"
+    -> FROM training t
+    -> INNER JOIN kategori_training kt ON t.kategori_training_id = kt.id
+    -> INNER JOIN peserta pa ON t.peserta_id = pa.id
+    -> INNER JOIN pengajar pr ON t.pengajar_id = pr.id
+    -> INNER JOIN kategori_pengajar kp ON pr.kategori_pengajar_id = kp.id
+    -> INNER JOIN kursus k ON pr.id = k.id
+    -> INNER JOIN kategori_kursus kk ON k.kategori_kursus_id = kk.id;
++--------------+-------------------+------------+------------+-----------------------+------------+----------------+----------------------+---------------+-------------------+        
+| nama_peserta | kategori training | tgl_mulai  | tgl_akhir  | tempat                | keterangan | nama_kursus    | nama_kategori_kursus | nama_pengajar | kategori pengajar |        
++--------------+-------------------+------------+------------+-----------------------+------------+----------------+----------------------+---------------+-------------------+        
+| Yoga         | Public            | 2020-01-01 | 2021-01-01 | Universitas Indonesia | Berakhir   | LAN            | Jaringan             | Ucup          | Internal          |        
+| Eko          | Public            | 2022-02-01 | 2022-09-01 | Universitas Indonesia | Berjalan   | Bahasa Inggris | Bahasa               | Indri         | Freelancer        |        
+| Ajis         | In House          | 2021-01-01 | 2023-01-01 | PT Nurul Fikri        | Berjalan   | Outlook        | Office               | Agus          | Freelancer        |        
+| Ahmad        | Private           | 2022-01-01 | 2023-01-01 | PT Nurul Fikri        | Berjalan   | PHP            | Pemrograman          | Asep          | External          |        
+| Rahul        | Private           | 2022-04-01 | 2023-01-01 | PT Nurul Fikri        | Berjalan   | Blender 3D     | Design Grafis        | Udin          | Internal          |        
++--------------+-------------------+------------+------------+-----------------------+------------+----------------+----------------------+---------------+-------------------+        
+5 rows in set (0.001 sec)
+
+--Backup db
+MariaDB [dbtraining]> \q
+Bye
+
+-- BACKUP database
+C:\xampp\mysql\bin>mysqldump -u root -p dbtraining > D:\dbtraining.sql
+Enter password:
+
+C:\xampp\mysql\bin>

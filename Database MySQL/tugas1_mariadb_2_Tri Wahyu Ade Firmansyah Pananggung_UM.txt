@@ -1,0 +1,99 @@
+-- Masuk Ke DB
+mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 153
+Server version: 10.4.22-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+-- Tampilkan Database 
+MariaDB [(none)]> SHOW DATABASES; 
++--------------------+
+| Database           |
++--------------------+
+| blog               |
+| coba               |
+| information_schema |
+| list_anime         |
+| mahasiswa          |
+| mbkm               |
+| mysql              |
+| penjualan          |
+| performance_schema |
+| phpmyadmin         |
+| studi independen   |
+| studi_independen   |
+| test               |
++--------------------+
+13 rows in set (0.001 sec)
+
+-- Buat Database  dbpegawai
+MariaDB [(none)]> CREATE DATABASE dbpegawai;
+Query OK, 1 row affected (0.003 sec)
+
+-- Masuk Ke Database dbpegawai
+MariaDB [(none)]> USE dbpegawai;
+Database changed
+
+-- Menampilkan Table Yang Sudah Ada 
+MariaDB [dbpegawai]> show tables;
+Empty set (0.001 sec)
+
+-- Membuat Table Pegawai
+MariaDB [dbpegawai]> CREATE TABLE pegawai (
+    ->     id INT KEY,
+    ->     nip CHAR(5) NOT NULL UNIQUE,
+    ->     nama VARCHAR(30) NOT NULL,
+    ->     gender ENUM('L','P') NOT NULL,
+    ->     umur INT NOT NULL,
+    ->     berat_badan FLOAT
+    -> );
+Query OK, 0 rows affected (0.007 sec)
+
+-- Menampilkan Kembali Database 
+MariaDB [dbpegawai]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| blog               |
+| coba               |
+| dbpegawai          |
+| information_schema |
+| list_anime         |
+| mahasiswa          |
+| mbkm               |
+| mysql              |
+| penjualan          |
+| performance_schema |
+| phpmyadmin         |
+| studi independen   |
+| studi_independen   |
+| test               |
++--------------------+
+14 rows in set (0.002 sec)
+
+-- Melihat Descripsi Table Pegawai
+MariaDB [dbpegawai]> DESC pegawai;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int(11)       | NO   | PRI | NULL    |       |
+| nip         | char(5)       | NO   | UNI | NULL    |       |
+| nama        | varchar(30)   | NO   |     | NULL    |       |
+| gender      | enum('L','P') | NO   |     | NULL    |       |
+| umur        | int(11)       | NO   |     | NULL    |       |
+| berat_badan | float         | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+6 rows in set (0.004 sec)
+
+-- Melihat Table 
+MariaDB [dbpegawai]> SHOW TABLES;
++---------------------+
+| Tables_in_dbpegawai |
++---------------------+
+| pegawai             |
++---------------------+
+1 row in set (0.001 sec)

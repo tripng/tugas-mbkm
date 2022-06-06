@@ -1,0 +1,48 @@
+--1. Gunakan database dbpenjadwalan
+USE dbpenjadwalan;
+
+--2. buat index di masing-masing tabel (minimal 3 tabel) untuk data yang sering dicari dan tidak unique
+CREATE INDEX nama_idx ON kategori(nama);
+CREATE INDEX tgl_idx ON detail_jadwal(tgl);
+CREATE INDEX nama_idx ON pengajar(nama);
+
+--3. buat view untuk menampilkan data materi kursus (materi_kursus_v): nama materi dan nama kategori
+CREATE VIEW materi_kursus_v AS
+SELECT m.nama Materi,k.nama Kategori
+FROM materi m
+INNER JOIN kategori k ON m.idKategori = k.id;
+
+--4. panggil view: materi_kursus_v
+SELECT * FROM materi_kursus_v;
+
+--5. buat view untuk menampilkan data training (training_v): tgl mulai, tgl akhir, nama kategori, nama materi kursus, jenis kelas, nama pengajar, klien
+CREATE VIEW training_V AS
+SELECT tglMulai,tglAkhir,k.nama Kategori,m.nama Materi,jk.nama "Jenis Kelas",p.nama Pengajar,kl.nama Klien
+FROM jadwaltraining jt
+INNER JOIN materi m ON jt.idMateri = m.id
+INNER JOIN kategori k ON m.idKategori = k.id
+INNER JOIN jeniskelas jk ON jt.idJenisKelas = jk.id
+INNER JOIN pengajar p ON jt.idPengajar = p.id
+INNER JOIN klien kl ON jt.idKlien = kl.id;
+
+--6. panggil view: training_v
+SELECT * FROM training_v;
+
+--7. beri akses ke user mimin untuk mengakses seluruh database & tabel2 di dalamnya
+GRANT ALL PRIVILEGES ON *.* TO mimin@localhost
+IDENTIFIED BY 'mimin';
+FLUSH PRIVILEGES;
+
+--8. beri akses ke user budi untuk mengakses 1 database : dbpenjadwalan & tabel2 di dalamnya
+GRANT ALL PRIVILEGES ON dbpenjadwalan.* TO budi@localhost
+IDENTIFIED BY 'budi';
+FLUSH PRIVILEGES;
+
+--9. beri akses ke user andi untuk mengakses 1 database : dbpenjadwalan dengan sebagian privileges: SELECT, INSERT
+GRANT SELECT,INSERT ON dbpenjadwalan.* TO andi@localhost
+IDENTIFIED BY 'andi';
+FLUSH PRIVILEGES;
+
+--10. Cabut hak akses budi (REVOKE ALL)
+REVOKE ALL PRIVILEGES ON dbpenjadwalan.* FROM 'budi'@'localhost';
+FLUSH PRIVILEGES; 
