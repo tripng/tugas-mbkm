@@ -1,0 +1,1 @@
+<img class="mx-auto" src="public/img/foto1.jpeg" alt="me" style="width: 400px; display:block;">
