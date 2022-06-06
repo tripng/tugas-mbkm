@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tugas 3 CSS</title>
+    <link rel="stylesheet" href="tugas3.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbarku">
+        <div class="logo">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 467.99"><defs><style>.cls-1{fill:none;}.cls-2,.cls-5{fill:#fff;}.cls-3{fill:url(#linear-gradient);}.cls-4{clip-path:url(#clip-path);}.cls-5{font-size:360.92px;font-family:MicrosoftNewTaiLue, Microsoft New Tai Lue;}.cls-6{fill:url(#linear-gradient-2);}</style><linearGradient id="linear-gradient" x1="58.58" y1="58.58" x2="341.42" y2="341.42" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1fd1f9"/><stop offset="0.35" stop-color="#6480fb"/><stop offset="0.74" stop-color="#b621fe"/></linearGradient><clipPath id="clip-path"><rect class="cls-1" x="207.45" y="64.15" width="122.81" height="184.9"/></clipPath><linearGradient id="linear-gradient-2" x1="91.49" y1="360.79" x2="313.41" y2="360.79" gradientUnits="userSpaceOnUse"><stop offset="0" stop-opacity="0.05"/><stop offset="1" stop-opacity="0.02"/></linearGradient></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-2" x="134.53" y="188.46" width="54.66" height="26.77" transform="translate(323.72 403.68) rotate(180)"/><rect class="cls-3" width="400" height="400" rx="200"/><rect class="cls-2" x="60.66" y="214.28" width="213.45" height="29.69" transform="translate(396.51 61.74) rotate(90)"/><rect class="cls-2" x="79.74" y="122.4" width="175.3" height="22.54"/><g class="cls-4"><text class="cls-5" transform="translate(147.15 330.53) scale(0.93 1)">P</text></g><rect class="cls-2" x="81.11" y="77.81" width="132.89" height="26.89" transform="translate(295.12 182.51) rotate(180)"/><ellipse class="cls-6" cx="202.45" cy="360.79" rx="110.96" ry="13.01"/></g></g></svg>
+            </a>
+            <h2>Tri Pananggung</h2>
+        </div>
+        <!--------- MENU ------- -->
+        <div class="navbar">
+            <ul>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Pendidikan</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- ENDNAVBAR -->
+
+    <!-- HEADER -->
+    <header>
+        <div class="welcome">
+            <h1>ようこそ！</h1>
+            <p>Hai, Nama saya Tri Wahyu Ade Firmansyah Pananggung saya berasal dari sulawesi utara lebih tepatnya dikota Gorontalo. Saya sekarang melakukan pendidikan di Universitas Negeri Malang Jurusan Teknik Elektro program studi Teknik Informatika.</p>
+        </div>
+        <div class="animation">
+            <img src="leptop.svg" alt="Leptop">
+            <img src="kopi.svg" alt="kopi">
+            <img src="uap.svg" alt="bayangan">
+        </div>
+    </header>
+
+    <section>
+        <nav>
+            <h1>My Project</h1>
+            <ul>
+                <li><a href="#">Undangan</a></li>
+                <li><a href="#">Ecommerce</a></li>
+                <li><a href="#">Skripsi</a></li>
+                <li><a href="#">Edukasi</a></li>
+            </ul>
+        </nav>
+        <article>
+            <h1>Contact Me</h1>
+            <form action="">
+                <input type="text" placeholder="Email">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Pesan"></textarea>
+                <div class="tombol">
+                    <button type="submit">Kirim</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </article>
+    </section>
+
+    <footer>
+        &copy; Tri Wahyu Ade Firmansyah Pananggung || 2022
+    </footer>
+    <!-- ENDHEADER -->
+    <div class="cursor"></div>
+    <script>
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove',(tp) =>{
+            cursor.style.top = tp.pageY + 'px';
+            cursor.style.left = tp.pageX + 'px';
+        })
+        window.addEventListener('scroll',function(){
+            var navbar = document.querySelector('nav');
+            navbar.classList.toggle("animasi",window.scrollY > 0);
+        })
+    </script>
+</body>
+</html>

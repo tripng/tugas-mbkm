@@ -1,0 +1,223 @@
+*{
+    box-sizing: border-box;
+    font-family:sans-serif;
+}
+:root{
+    font-size: 1.25rem;
+    --dark :#161623;
+    --shadow : 20px 20px 50px rgba(0,0,0,0.5);
+    --radius : 15px;
+    --background : rgba(255,255,255,.1);
+    --border : 1px solid rgba(255,255,255,.5);
+}
+html,body{
+    margin:0;
+    padding:0;
+    background: var(--dark);
+}
+body::before{
+    content: "";
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#1fd1f9,#b621fe);
+    clip-path: circle(20% at right 60%);
+}
+body::after{
+    content: "";
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#1fd1f9,#b621fe);
+    clip-path: circle(10% at 0% 80%);
+}
+.cursor{
+    position:absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    transition: .1s;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 20;
+}
+
+:is(
+    .profil:hover ~ .cursor, 
+    h1:hover ~ .cursor,
+    footer:hover~.cursor,
+    fieldset:hover~.cursor,
+    .street:hover~.cursor
+    ) {
+    transform: scale(3);
+}
+
+/* Materi */
+.logo,
+.navbar,
+nav{
+    display: flex;
+    transition: .5s;
+}
+nav{
+    padding: 40pt 50px;
+    position: fixed;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 15;
+    background: #161623;
+}
+nav.animasi{
+    padding: 0px;
+    border-bottom: 2pt solid snow;
+}
+.logo{
+    margin-left: 5%;
+    align-items: center;
+}
+.logo img{
+    width: 60px;
+    margin-right: 1em;
+    height: 60px;
+}
+.logo h2{
+    color: snow;
+}
+.navbar{
+    width: 50%;
+}
+nav ul{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+nav ul li{
+    list-style: none;
+}
+nav ul li a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding:20px;
+    transition: .5s;
+}
+nav li a:hover{
+    color: #161623;
+    background: snow;
+}
+h1{
+    width: 20rem;
+    margin: auto;
+    text-align: center;
+    padding-top: 150pt;
+    color:snow;
+}
+hr{
+    width: min(250px);
+    border: 2px solid #2196f3;
+}
+.profil{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width:90%;
+    margin: 35px auto;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    background: var(--background);
+    border-top: var(--border);
+    border-left: var(--border);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    padding:2em;
+}
+.profil img{    
+    width: 300px;
+}
+.profil p{
+    width: 60%;
+    line-height: 1.5em;
+    color:rgba(255, 255, 255, .8);
+}
+.profil p::first-letter{
+    font-weight: bold;
+    border-top: 3px solid #2196f3;
+}
+.profil strong{
+    color:snow;
+    border-bottom: 2px dashed snow;
+    transition: .5s;
+}
+.profil strong:hover{
+    color:#e91e63;
+    border-color:#e91e63;
+}
+.street{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin:auto;
+}
+:is(.kontak,fieldset){
+    position: relative;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    background: var(--background);
+    border-top: var(--border);
+    border-left: var(--border);
+    backdrop-filter: blur(5px);
+    color: snow;
+}
+.street .kontak svg{
+    fill: #2196f3;
+}
+.kontak{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30%;
+    margin-top:38px;
+}
+.baris{
+    display: flex;
+    justify-content: space-evenly;
+}
+fieldset{
+    border:0;
+    width: 60%;
+    position:relative;
+    z-index: 5;
+}
+fieldset h3{
+    color:white;
+    border-bottom: 2px solid #e91e63;
+}
+table{
+    margin:10px auto;
+}
+table tr:hover{
+    background-color:darkslateblue;
+}
+table th{
+    background: #0d0d14;
+}
+:is(td,th){
+    border-bottom: 1px solid white;
+    padding:20px;
+}
+
+footer{
+    color: snow;
+    text-align: center;
+    background-color: #0d0d14;
+    padding: 20px 0;
+    margin-top: 50px;
+    font-size: .8em;
+}
