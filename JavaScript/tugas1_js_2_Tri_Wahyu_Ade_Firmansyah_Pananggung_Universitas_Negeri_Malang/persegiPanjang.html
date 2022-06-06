@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 JS || Persegi Panjang</title>
+    <link rel="stylesheet" href="persegiPanjang.css">
+</head>
+<body>
+    <div class="container">
+        <h2><span>Persegi Panjang</span></h2>
+            <form name="persegiPanjang">
+            <div class="row">
+                <div class="col">
+                    <div class="input">
+                        <input type="text" required="required" name="InputPersegi" class="panjang">
+                        <span class="text">Masukkan Panjang Persegi </span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input">
+                        <input type="text" required="required" name="InputPersegi" class="lebar">
+                        <span class="text">Masukkan Lebar Persegi </span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="reset">Clear</button>
+                    <span class="tombol" type="submit" onclick="hitung()">Hitung</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input textarea">
+                        <textarea readonly name="hasil" id=""></textarea>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    <script>
+        const panjang = document.querySelector(".panjang");
+        const lebar = document.querySelector(".lebar");
+        const hasil_perhitungan = document.querySelector("textarea");
+
+        const hitung = function(){
+            // Hitung luas
+            let luas = Number(panjang.value)*Number(lebar.value);
+            // Hitung keliling
+            let keliling = 2*(Number(panjang.value)+Number(lebar.value));
+            // Hitung panjang
+            let panjang_persegi = luas/lebar.value;
+            // Hitung lebar
+            let lebar_persegi = luas/panjang.value;
+
+            let hasilAkhir = `
+            Panjang Persegi  : ${panjang_persegi}
+            Lebar Persegi      : ${lebar_persegi}
+            Keliling Persegi    : ${keliling}
+            Luas Persegi        : ${luas}
+            `;
+            hasil_perhitungan.value += hasilAkhir;
+        }
+    </script>
+</body>
+</html>

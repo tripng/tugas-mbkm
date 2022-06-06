@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 2.2 JS</title>
+    <link rel="stylesheet" href="mahasiswa.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Daftar Siswa</h2>    
+    <script>
+        document.writeln(
+            '<table cellpadding="10" cellspacing="0">' +
+                '<thead>' +
+                    '<th>No</th>' +
+                    '<th>Nama</th>' +
+                    '<th>Alamat</th>' +
+                '</thead>'
+        );
+        for(let a = 1; a<=10; a++){
+            document.write(
+                '<tr>' +
+                    '<td>'+ a +'</td>' +
+                    '<td> Siswa '+ a +'</td>' +
+                    '<td> Jl Margonda No '+ a +'</td>' +
+                '</tr>' 
+                );
+            }
+        document.write(
+            '</table>' +
+        '</div>'
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 2.1 JS</title>
+    <link rel="stylesheet" href="nilai.css">
+</head>
+<body>
+    <div class="container">
+        <h2><span>Daftar Nilai Pemrograman Web</span></h2>
+
+    <script>
+        let nama_mahasiswa = "Tri Wahyu Ade Firmansyah Pananggung",
+            matakuliah = "Pemrograman Web",
+            nilai = 46,
+            ket,predikat;
+
+        ket = nilai >= 60 && nilai<=100 ? 'Lulus' : 'Tidak Lulus';
+
+        if(nilai > 85 && nilai <= 100 ) grade = 'A';
+        else if(nilai > 75 && nilai <=85 ) grade = 'B';
+        else if(nilai >= 60 && nilai <=75) grade = 'C';
+        else if(nilai > 30 && nilai <60) grade = 'D';
+        else if(nilai >=0 && nilai <= 30) grade = 'E';
+        else grade = "Data Tidak Valid";
+
+        switch(grade){
+            case 'A' : predikat = "Memuaskan"; break;
+            case 'B' : predikat = "Baik"; break;
+            case 'C' : predikat = "Cukup"; break;
+            case 'D' : predikat = "Kurang"; break;
+            case 'E' : predikat = "Buruk"; break;
+            default : predikat = "Data Tidak Valid";
+        }
+        
+        document.write( 
+            "<p>Matakuliah = " + matakuliah +
+            "<br>Nama = " + nama_mahasiswa +
+            "<br>Nilai = " + nilai +
+            "<br>Grade = " + grade +
+            "<br>Predikat = " + predikat +
+            "<br>Keterangan = " + ket + "</p></div>" 
+        );
+    </script>
+</body>
+</html>

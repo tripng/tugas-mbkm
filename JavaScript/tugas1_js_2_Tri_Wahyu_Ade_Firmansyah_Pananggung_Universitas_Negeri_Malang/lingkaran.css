@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #161623;
+}
+.container{
+    width: 60%;
+    padding: 20px;
+}
+.container h2{
+    color: #45f3ff;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 60px;
+}
+.container h2 span{
+    border-bottom: 3px solid white;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+.container .row{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(autofit,minmax(300px),1fr);
+}
+.container .row .col{
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+    margin: 30px 0 10px;
+    transition: .5s;
+}
+.container .row .input{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    color: #45f3ff;
+}
+.container .row .input input,
+.container .row .input.textarea textarea{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 0 10px;
+    z-index: 1;
+    color: #000;
+}
+.container .row .input .text{
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    font-size: 18px;
+    padding: 0 10px;
+    display: block;
+    transition: .5s;
+    pointer-events: none;
+}
+.container .row .input input:focus + .text,
+.container .row .input input:valid + .text{
+    top:-35px;
+    left: -10px;
+}
+.container .row .input .line{
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background:#45f3ff ;
+    transition: .5s;
+    border-radius: 2px;
+    pointer-events: none;
+}
+.container .row .input input:focus ~ .line,
+.container .row .input input:valid ~ .line{
+    height: 100%;
+}
+.row .col button,
+.row .tombol{
+    background-color: #45f3ff;
+    border: none;
+    outline: none;
+    padding:9px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .4s;
+}
+.row .col button:hover,
+.row .tombol:hover{
+    background-color: #45f3ff4f;
+    color: white;
+}
+.row .col .input.textarea{
+    width: 100%;
+    height: 100px;
+    background-color: #45f3ff;
+    resize: none;
+}
+.row .col .input.textarea textarea{
+    resize: none;
+    cursor:default;
+    overflow: hidden;
+    /* line-height: 22px; */
+    
+}

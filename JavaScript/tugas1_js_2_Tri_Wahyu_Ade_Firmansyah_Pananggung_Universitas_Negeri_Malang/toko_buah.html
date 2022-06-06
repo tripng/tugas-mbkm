@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 Js || Buah</title>
+    <link rel="stylesheet" href="toko_buah.css">
+</head>
+<body>
+    <div class="container">
+        <h2><span>Beli Buah</span></h2>
+            <form name="buah">
+            <div class="row">
+                <div class="col">
+                    <div class="input">
+                        <select name="" id="">
+                            <option disabled selected>--Pilih Buah--</option>
+                            <option value="jeruk">Jeruk</option>
+                            <option value="mangga">Mangga</option>
+                            <option value="apel">Apel</option>
+                            <option value="anggur">Anggur</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input">
+                        <input type="text" required="required" name="Inputbuah" class="jumlah">
+                        <span class="text">Masukkan Jumlah Yang Dibeli </span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="reset">Clear</button>
+                    <span class="tombol" type="submit" onclick="hitung()">Hitung</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input textarea">
+                        <textarea readonly name="hasil" id=""></textarea>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    <script>
+        const pilihBuah = document.querySelector("select");
+        const jumlah_kg = document.querySelector(".jumlah");
+        const hasil_perhitungan = document.querySelector("textarea");
+
+        const hitung = function(){
+            let buah = pilihBuah.value;
+            let harga_kg = 0,total_harga = 0,harga = 0;
+            if(buah == 'jeruk'){
+                harga += 15000;
+                harga_kg += harga;
+            } 
+            else if(buah == 'mangga'){
+                harga += 20000;
+                harga_kg += harga;
+            }
+            else if(buah == 'apel'){
+                harga += 25000;
+                harga_kg += harga;
+            }
+            else if(buah == 'anggur'){
+                harga += 30000;
+                harga_kg += harga;
+            }
+            else alert("Maaf Buah Yang Anda Masukkan Tidak Sesuai");
+
+            total_harga += Number(jumlah_kg.value)*harga_kg;
+            let hasil = `
+                Buah Yang Dibeli = ${buah}
+                Harga per Kilo = ${harga}
+                Jumlah Yang Dibeli = ${jumlah_kg.value}
+                Harga Total = ${total_harga}
+            `
+            hasil_perhitungan.value += hasil;
+        }
+    </script>
+</body>
+</html>

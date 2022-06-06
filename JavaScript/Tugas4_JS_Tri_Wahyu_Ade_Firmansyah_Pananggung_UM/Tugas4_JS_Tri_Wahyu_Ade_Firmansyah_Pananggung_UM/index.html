@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas JS 4</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <button onclick="tombol()">Lihat Gaji Karyawan</button>
+    <div class="container">
+        <table>
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="cursor"></div>
+    <script>
+        // FUNCTION DUIT TABUNGAN NIKAH 🥰 
+        function formatPrice(money) {
+			return new Intl.NumberFormat('id-ID', {
+				style: 'currency',
+				currency: 'IDR',
+				minimumFractionDigits: 0
+			}).format(money);
+		}
+        // POKONYA DEKLARASI AJA DULU 😑
+        let judul   = ['No','Nama','Jabatan','Gaji Pokok','Tunjangan Jabatan','Total Gaji'],
+            no      =1, gapok,warna,
+            data    = {
+                Budi : "Manager", 
+                Siti : "Manager",
+                Andi : "Kabag",
+                Deden : "Asisten Manager",
+                Wawan : "Staff",
+                Mimin : "Staff"
+            }
+        // LOOPING TH TD YOK BISA YOK 🙂
+        for(const jdl of judul) document.querySelector("thead tr").innerHTML += `<th>${jdl}</th>`;
+        for(const dt of Object.keys(data)){
+            switch(data[dt]){
+                case 'Manager': gapok = 20000000; break;
+                case 'Asisten Manager': gapok = 15000000; break;
+                case 'Kabag' : gapok = 10000000;break;
+                case 'Staff' : gapok = 5000000; break;
+                default : 'Jabatan Anda Tidak Valid';
+            }
+            // いろ ❤️
+            warna = no%2 ? "#dfe6e9" : "#fff" ;
+            // 召喚 ✍️
+            document.querySelector("tbody").innerHTML += `
+                <tr bgcolor=${warna}>
+                    <td>${no++}</td>
+                    <td>${dt}</td>
+                    <td>${data[dt]}</td>
+                    <td>${formatPrice(gapok)}</td>
+                    <td>${formatPrice(gapok*0.2)}</td>
+                    <td>${formatPrice(gapok*0.2+gapok)}</td>
+                </tr>`;
+        }
+        // BUAT TEKANAN BATIN🥲
+        function tombol(){
+            document.querySelector(".container").style = "display:block";
+            document.querySelector("button").style = "display:none";
+            document.querySelector("body").style = "background:linear-gradient(90deg,#74b9ff,#00b894);";
+        }
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove',(tp) =>{
+            cursor.style.top = tp.pageY + 'px';
+            cursor.style.left = tp.pageX + 'px';
+        });
+    </script>
+</body>
+</html>

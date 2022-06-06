@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 5 JS</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h2><span>Toko Desu</span></h2>
+            <form name="buah">
+                <div class="row">
+                    <div class="col">
+                        <div class="input">
+                            <input type="text" required="required" name="inputnama" class="jumlah" >
+                            <span class="text">Masukkan Nama</span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input">
+                            <select name="produk">
+                                <option selected disabled>--Pilih Produk--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input">
+                            <input type="number" required="required" name="inputjumlah" class="jumlah" >
+                            <span class="text">Masukkan Jumlah </span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="reset">Clear</button>
+                        <span class="tombol" type="submit" onclick="hitung()">Hitung</span>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 JS || Lingkaran</title>
+    <link rel="stylesheet" href="lingkaran.css">
+</head>
+<body>
+    <div class="container">
+        <h2><span>Lingkaran</span></h2>
+            <form name="diameter">
+            <div class="row">
+                <div class="col">
+                    <div class="input">
+                        <input type="text" required="required" name="inputDiameter">
+                        <span class="text">Masukkan Diameter Lingkaran </span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="reset">Clear</button>
+                    <span class="tombol" type="submit" onclick="hitung()">Hitung</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input textarea">
+                        <textarea readonly name="hasil" id=""></textarea>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    <script>
+        const inputan = document.querySelector(".input > input");
+        const hasil_perhitungan = document.querySelector("textarea");
+        let phi = 22/7;
+
+        const hitung = function(){
+            // Hitung Jari-Jari
+            let jari2 = Number(inputan.value)/2;
+            // Hitung Luas
+            let luas = phi*(jari2**2);
+            // Hitung Keliling
+            let keliling = 2*phi*jari2
+
+            let hasilAkhir = `
+            Jari-Jari Lingkaran : ${jari2}
+            Luas Lingkaran      : ${luas}
+            Keliling                   : ${keliling}
+            `;
+            hasil_perhitungan.value += hasilAkhir;
+
+        }
+    </script>
+</body>
+</html>

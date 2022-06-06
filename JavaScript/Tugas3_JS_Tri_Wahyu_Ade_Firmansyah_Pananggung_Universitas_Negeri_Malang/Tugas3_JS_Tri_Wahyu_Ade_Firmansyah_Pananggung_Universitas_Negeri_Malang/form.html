@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <span name="daftarPopUp" onclick="fbPOP()" class="popup">Sign Up Now</span>
+    <div class="container">
+        <h1 class="close" onclick="tutup()">❌</h1>
+        <form name="daftar">
+            <h1>Sign Up</h1>
+            <h5>It's quick and easy</h5>
+            <hr>
+            <div class="name">
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+            </div>
+            <input type="text" placeholder="Mobile number or email address"><br>
+            <input type="password" placeholder="New Password">
+            <h6>Date Of Birthday</h6>
+            <div class="date">
+                <!-- TANGGAL -->
+                <select name="tanggal">
+                    <script>
+                        let tanggal = 0;
+                        while(tanggal<=31){
+                            tanggal++;
+                            document.write(`<option>${tanggal}</option>`);
+                        }
+                    </script>
+                </select>
+    
+                <!-- BULAN -->
+                <select name="bulan">
+                    <script>
+                        let bulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","Septpember","Oktober","November","Desember"];
+                        for(const つき in bulan){
+                            document.write(`<option>${bulan[つき]}</option>`);
+                        }
+                        </script>
+                </select>
+                
+                <!-- TAHUN -->
+                <select name="tahun">
+                    <script>
+                        let tahunSekarang = new Date().getFullYear();
+                        for(let i=tahunSekarang; i>=(tahunSekarang-100); i--){
+                            if(i > (tahunSekarang - 13)) continue;
+                            if(i == (tahunSekarang - 61)) break;
+                            document.write(`<option>${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <h6>Jenis Kelamin</h6>
+            <div class="jk">
+            <script>
+                const jeniskelamin = ["Male","Famale"];
+                for(let jk in jeniskelamin){
+                    document.write(`
+                        <label>
+                            ${jeniskelamin[jk]} <input name="jk" type="radio"> 
+                        </label>
+                    `);
+                }
+            </script>
+            </div>
+            <br>
+            <h6 class="clickSign">By clicking Sign Up, you agree to our Terms,Data Policy and cookie Policy, you may receive SMS notifications from us and opt out at any time</h6>
+            <div class="tombol">
+                <button name="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let container = document.querySelector('.container'),
+            popup = document.querySelector('.popup'),
+            close = document.querySelector('.close');
+        
+        function fbPOP(){
+            container.style.animation = "popup 1s ease forwards";
+            container.style.display = "block";
+            popup.style.display = "none";
+        }
+        function tutup(){
+            container.style.display = "none";
+            popup.style.display = "block";
+        }
+    </script>
+</body>
+</html>
