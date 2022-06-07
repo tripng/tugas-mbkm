@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            font-family: sans-serif;
+            width: 80%;
+            margin: 2px auto;
+        }
+        nav ul {
+            list-style: none;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+        }
+        nav ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: rgb(83, 82, 82);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0 10px;
+        }
+        nav ul li a,
+        nav ul li a:after,
+        nav ul li a:before {
+            transition: all .5s;
+        }
+        nav ul li a:hover {
+            color: rgb(39, 36, 36);
+        }
+        nav.blend ul li a {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        nav.blend ul li a:hover {
+            color: #fff;
+        }
+        nav.blend ul li a:before,
+        nav.blend ul li a:after {
+            position: absolute;
+            width: 0px;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            background: rgb(74, 148, 218);
+            transition: all .5s;
+            margin: auto;
+            content: '.';
+            color: transparent;
+            z-index: -1;
+            opacity: 0.75;
+        }
+        nav.blend ul li a:before {
+            left: 0;
+        }
+        nav.blend ul li a:after {
+            right: 0;
+        }
+    
+        nav.blend ul li a:hover:after,
+        nav.blend ul li a:hover:before {
+            width: 100%;
+        }
+    </style>
+</head>
+<body bgcolor="lightskyblue">
+    <nav class="blend">
+        <ul>
+          <li><a href="home.html" target="content">Home</a></li>
+          <li><a href="programming.html" target="content">Tutorial Programming</a></li>
+          <li><a href="database.html" target="content">Tutorial Database</a></li>
+        </ul>
+      </nav>
+</body>
+</html>
